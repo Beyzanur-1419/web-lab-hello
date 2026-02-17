@@ -1,0 +1,44 @@
+/* Genel sayfa ayarları */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ana kapsayıcı */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* İçerik kartı */
+div {
+  background-color: white;
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Başlıklar */
+h1 {
+  font-size: 2.2rem;
+  color: #2d2d2d;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* Metinler */
+p {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 8px 0;
+}
