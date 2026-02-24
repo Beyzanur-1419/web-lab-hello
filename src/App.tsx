@@ -1,16 +1,14 @@
 function App() {
   return (
     <>
-      {/* Skip Navigation */}
+      {/* Skip link */}
       <a href="#main-content" className="skip-link">
         Ana içeriğe atla
       </a>
 
-      {/* Header & Navigation */}
+      {/* Header + Nav */}
       <header>
-        <h1>Web Tasarımı ve Programlama</h1>
-        <h2>LAB – Kişisel Tanıtım Sitesi</h2>
-
+        <h1>Beyza Nur Ozanalp</h1>
         <nav aria-label="Ana navigasyon">
           <ul>
             <li><a href="#hakkimda">Hakkımda</a></li>
@@ -20,52 +18,72 @@ function App() {
         </nav>
       </header>
 
-      {/* Main Content */}
+      {/* Main content */}
       <main id="main-content">
+
         {/* Hakkımda */}
         <section id="hakkimda">
           <h2>Hakkımda</h2>
 
-          <figure>
-            <img
-              src="/profil.jpg"
-              alt="Beyza Nur Ozanalp'in profil fotografi"
-              width="150"
-            />
-            <figcaption>Beyza Nur Ozanalp</figcaption>
-          </figure>
+      
 
           <p>
-            Merhaba, ben Beyza Nur Ozanalp. Yazılım mühendisliği öğrencisiyim.
-            Web ve mobil uygulama geliştirme ile ilgileniyorum.
+            Yazılım Mühendisliği öğrencisiyim. Web ve mobil teknolojilere ilgi
+            duyuyor, kullanıcı odaklı ve erişilebilir arayüzler geliştirmeyi
+            hedefliyorum.
           </p>
 
-          <p>
-            Hobilerim: UI tasarımı, yeni teknolojiler öğrenmek ve proje üretmek.
-          </p>
+          <h3>Kullandığım Teknolojiler</h3>
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript</li>
+            <li>React</li>
+            <li>TypeScript</li>
+          </ul>
         </section>
 
         {/* Projeler */}
         <section id="projeler">
           <h2>Projelerim</h2>
 
-          <figure>
-            <img
-              src="/proje1.1.jpg"
-              alt="Glowmance uygulamasi analiz ekrani"
-              width="250"
-            />
-            <figcaption>Glowmance – Analiz Ekranı</figcaption>
-          </figure>
+          <article>
+            <h3>Glowmance</h3>
+            <p>
+              Yapay zeka destekli cilt analizi yaparak kullanıcıya uygun bakım
+              ürünleri öneren web uygulaması.
+            </p>
+            <p><strong>Teknolojiler:</strong> React, Vite, AI API</p>
 
-          <figure>
-            <img
-              src="/proje1.2..jpg"
-              alt="Glowmance uygulamasi gecmis raporlar ekrani"
-              width="250"
-            />
-            <figcaption>Glowmance – Geçmiş Raporlar</figcaption>
-          </figure>
+            <figure>
+              <img
+                src="/proje1.1.jpg"
+                alt="Glowmance cilt analiz ekranı"
+                width="300"
+                loading="lazy"
+              />
+              <figcaption>Cilt Analiz Ekranı</figcaption>
+            </figure>
+
+            <figure>
+              <img
+                src="/proje1.2.jpg"
+                alt="Glowmance ürün öneri ekranı"
+                width="300"
+                loading="lazy"
+              />
+              <figcaption>Ürün Öneri Ekranı</figcaption>
+            </figure>
+          </article>
+
+          <article>
+            <h3>Kişisel Portföy Sitesi</h3>
+            <p>
+              Kendimi ve projelerimi tanıttığım, erişilebilirlik kurallarına
+              uygun portföy web sitesi.
+            </p>
+            <p><strong>Teknolojiler:</strong> HTML, CSS, React</p>
+          </article>
         </section>
 
         {/* İletişim */}
@@ -134,7 +152,18 @@ function App() {
             </fieldset>
           </form>
         </section>
+
       </main>
+
+      {/* Footer */}
+      <footer>
+        <p>© 2026 Beyza Nur Ozanalp</p>
+        <p>
+          <a href="https://github.com/Beyzanur-1419/" target="_blank" rel="noreferrer">GitHub</a> |{" "}
+          <a href="http://www.linkedin.com/in/beyzanurozanalp" target="_blank" rel="noreferrer">LinkedIn</a> |{" "}  
+          <a href="https://medium.com/@beyzanurozanalp/" target="_blank" rel="noreferrer">Medium</a>
+        </p>
+      </footer>
     </>
   );
 }
