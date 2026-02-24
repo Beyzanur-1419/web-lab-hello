@@ -1,33 +1,89 @@
-/* Genel sayfa ayarları */
+/* =====================
+   GENEL SAYFA AYARLARI
+   ===================== */
 body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea, #764ba2);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
 }
 
-/* Ana kapsayıcı */
-#root {
+/* =====================
+   SKIP LINK (Uygulama-3)
+   ===================== */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* =====================
+   HEADER & NAV
+   ===================== */
+header {
+  background-color: white;
+  padding: 20px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  gap: 25px;
 }
 
-/* İçerik kartı */
-div {
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #667eea;
+}
+
+/* =====================
+   MAIN ALAN
+   ===================== */
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* =====================
+   SECTION (Kart yapısı)
+   ===================== */
+section {
   background-color: white;
   padding: 40px 60px;
   border-radius: 16px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px;
   text-align: center;
 }
 
-/* Başlıklar */
+/* =====================
+   BAŞLIKLAR
+   ===================== */
 h1 {
   font-size: 2.2rem;
   color: #2d2d2d;
-  margin-bottom: 10px;
+  margin: 0;
+  text-align: center;
 }
 
 h2 {
@@ -36,9 +92,149 @@ h2 {
   margin-bottom: 25px;
 }
 
-/* Metinler */
+/* =====================
+   METİNLER
+   ===================== */
 p {
   font-size: 1.1rem;
   color: #333;
   margin: 8px 0;
+}
+
+/* =====================
+   FIGURE & IMG
+   ===================== */
+figure {
+  margin: 20px 0;
+}
+
+figure img {
+  border-radius: 12px;
+  max-width: 100%;
+}
+
+figcaption {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* =====================
+   FORM (Uygulama-3)
+   ===================== */
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+label {
+  font-weight: 500;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #667eea;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #5a67d8;
+}
+
+/* =====================
+   KLAVYE ERİŞİLEBİLİRLİK
+   ===================== */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid #ff9800;
+  outline-offset: 3px;
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+footer {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+
+section {
+  margin-top: 40px;
+}
+
+form {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input, select, textarea, button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+}
+
+button {
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid #ff9800;
 }
