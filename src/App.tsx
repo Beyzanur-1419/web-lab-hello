@@ -6,26 +6,34 @@ function App() {
         Ana içeriğe atla
       </a>
 
-      {/* Header + Nav */}
+      {/* =========================
+          Header + Navigation
+      ========================= */}
       <header>
         <h1>Beyza Nur Ozanalp</h1>
+
         <nav aria-label="Ana navigasyon">
           <ul>
-            <li><a href="#hakkimda">Hakkımda</a></li>
-            <li><a href="#projeler">Projelerim</a></li>
-            <li><a href="#iletisim">İletişim</a></li>
+            <li>
+              <a href="#hakkimda">Hakkımda</a>
+            </li>
+            <li>
+              <a href="#projeler">Projelerim</a>
+            </li>
+            <li>
+              <a href="#iletisim">İletişim</a>
+            </li>
           </ul>
         </nav>
       </header>
 
-      {/* Main content */}
+      {/* =========================
+          Main Content
+      ========================= */}
       <main id="main-content">
-
         {/* Hakkımda */}
         <section id="hakkimda">
           <h2>Hakkımda</h2>
-
-      
 
           <p>
             Yazılım Mühendisliği öğrencisiyim. Web ve mobil teknolojilere ilgi
@@ -49,17 +57,21 @@ function App() {
 
           <article>
             <h3>Glowmance</h3>
+
             <p>
               Yapay zeka destekli cilt analizi yaparak kullanıcıya uygun bakım
               ürünleri öneren web uygulaması.
             </p>
-            <p><strong>Teknolojiler:</strong> React, Vite, AI API</p>
+
+            <p>
+              <strong>Teknolojiler:</strong> React, Vite, AI API
+            </p>
 
             <figure>
               <img
                 src="/proje1.1.jpg"
                 alt="Glowmance cilt analiz ekranı"
-                width="300"
+                width={300}
                 loading="lazy"
               />
               <figcaption>Cilt Analiz Ekranı</figcaption>
@@ -69,7 +81,7 @@ function App() {
               <img
                 src="/proje1.2.jpg"
                 alt="Glowmance ürün öneri ekranı"
-                width="300"
+                width={300}
                 loading="lazy"
               />
               <figcaption>Ürün Öneri Ekranı</figcaption>
@@ -78,11 +90,15 @@ function App() {
 
           <article>
             <h3>Kişisel Portföy Sitesi</h3>
+
             <p>
-              Kendimi ve projelerimi tanıttığım, erişilebilirlik kurallarına
-              uygun portföy web sitesi.
+              Kendimi ve projelerimi tanıttığım, erişilebilirlik kurallarına uygun
+              portföy web sitesi.
             </p>
-            <p><strong>Teknolojiler:</strong> HTML, CSS, React</p>
+
+            <p>
+              <strong>Teknolojiler:</strong> HTML, CSS, React
+            </p>
           </article>
         </section>
 
@@ -104,7 +120,11 @@ function App() {
                   minLength={2}
                   aria-describedby="name-error"
                 />
-                <small id="name-error" className="error-msg" role="alert"></small>
+                <small
+                  id="name-error"
+                  className="error-msg"
+                  role="alert"
+                ></small>
               </div>
 
               <div className="form-group">
@@ -116,7 +136,11 @@ function App() {
                   required
                   aria-describedby="email-error"
                 />
-                <small id="email-error" className="error-msg" role="alert"></small>
+                <small
+                  id="email-error"
+                  className="error-msg"
+                  role="alert"
+                ></small>
               </div>
 
               <div className="form-group">
@@ -132,7 +156,11 @@ function App() {
                   <option value="soru">Soru</option>
                   <option value="oneri">Öneri</option>
                 </select>
-                <small id="subject-error" className="error-msg" role="alert"></small>
+                <small
+                  id="subject-error"
+                  className="error-msg"
+                  role="alert"
+                ></small>
               </div>
 
               <div className="form-group">
@@ -145,23 +173,49 @@ function App() {
                   minLength={10}
                   aria-describedby="message-error"
                 ></textarea>
-                <small id="message-error" className="error-msg" role="alert"></small>
+                <small
+                  id="message-error"
+                  className="error-msg"
+                  role="alert"
+                ></small>
               </div>
 
               <button type="submit">Gönder</button>
             </fieldset>
           </form>
         </section>
-
       </main>
 
-      {/* Footer */}
+      {/* =========================
+          Footer
+      ========================= */}
       <footer>
         <p>© 2026 Beyza Nur Ozanalp</p>
+
         <p>
-          <a href="https://github.com/Beyzanur-1419/" target="_blank" rel="noreferrer">GitHub</a> |{" "}
-          <a href="http://www.linkedin.com/in/beyzanurozanalp" target="_blank" rel="noreferrer">LinkedIn</a> |{" "}  
-          <a href="https://medium.com/@beyzanurozanalp/" target="_blank" rel="noreferrer">Medium</a>
+          <a
+            href="https://github.com/Beyzanur-1419/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>{" "}
+          |{" "}
+          <a
+            href="http://www.linkedin.com/in/beyzanurozanalp"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>{" "}
+          |{" "}
+          <a
+            href="https://medium.com/@beyzanurozanalp/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Medium
+          </a>
         </p>
       </footer>
     </>
