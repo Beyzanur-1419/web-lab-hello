@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* LAB-4: Tailwind özel tema (LAB-3 design tokenları) */
+@theme {
+  --color-primary: #1E3A8A;
+  --color-secondary: #2563EB;
+  --color-accent: #7C3AED;
+  --color-surface: #F9FAFB;
+  --color-muted: #6B7280;
+  --color-error: #DC2626;
+  --color-success: #16A34A;
+
+  --font-family-sans: system-ui, -apple-system, sans-serif;
+  --font-family-mono: 'Fira Code', 'Consolas', monospace;
+}
+
+/* LAB-4: Dark mode selector stratejisi için custom variant */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Genel gövde ayarları */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: #f9fafb;
+  color: #111827;
+}
