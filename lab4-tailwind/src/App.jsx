@@ -2,8 +2,28 @@ import Button from './components/Button.jsx'
 import Input from './components/Input.jsx'
 import Card from './components/Card.jsx'
 import Alert from './components/Alert.jsx'
+import { useEffect, useState } from 'react'
 
 function App() {
+  const [isDark, setIsDark] = useState(false)
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme')
+    const prefersDark =
+      window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    const shouldBeDark = saved ? saved === 'dark' : prefersDark
+
+    document.documentElement.classList.toggle('dark', shouldBeDark)
+    setIsDark(shouldBeDark)
+  }, [])
+
+  function toggleTheme() {
+    const next = !isDark
+    document.documentElement.classList.toggle('dark', next)
+    localStorage.setItem('theme', next ? 'dark' : 'light')
+    setIsDark(next)
+  }
+
   const profile = {
     name: 'Beyza Nur Ozanalp',
     title: 'Yazılım Mühendisliği Öğrencisi',
@@ -99,6 +119,20 @@ function App() {
       >
         Ana içeriğe atla
       </a>
+
+      {/* Dark mode toggle */}
+      <button
+        onClick={toggleTheme}
+        className="fixed top-4 right-4 z-50 bg-white/80 dark:bg-gray-900/70 backdrop-blur border border-gray-200/60 dark:border-gray-700/60 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-lg hover:scale-110 transition-transform"
+        aria-label="Tema değiştir"
+      >
+        <span className={isDark ? 'hidden' : ''} aria-hidden="true">
+          &#9790;
+        </span>
+        <span className={isDark ? '' : 'hidden'} aria-hidden="true">
+          &#9728;
+        </span>
+      </button>
 
       <div className="min-h-screen flex flex-col">
         {/* Header */}
