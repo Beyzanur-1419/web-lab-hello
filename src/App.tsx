@@ -1,4 +1,43 @@
-function App() {
+import { useState, useEffect } from "react";
+import type { Project, Category, SortField, SortOrder } from "./types/project";
+import { fetchProjects } from "./services/projectService";
+import { applyFilters } from "./utils/projectHelpers";
+
+export default function App() {
+  // ─── STATE ───────────────────────────────────────────────
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState<Category | "all">("all");
+  const [sortField, setSortField] = useState<SortField>("year");
+  const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // ─── VERİ ÇEKME ──────────────────────────────────────────
+  useEffect(() => {
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await fetchProjects();
+        setProjects(data);
+      } catch (err) {
+        setError(
+          err instanceof Error ? err.message : "Bilinmeyen bir hata oluştu."
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  // ─── TÜRETİLMİŞ VERİ (Derived State) ────────────────────
+  const filtered = applyFilters(projects, search, category, sortField, sortOrder);
+
+  const categories: (Category | "all")[] = ["all", "frontend", "fullstack", "backend"];
+
+  // ─── UI ──────────────────────────────────────────────────
   return (
     <>
       {/* Skip link */}
@@ -6,41 +45,29 @@ function App() {
         Ana içeriğe atla
       </a>
 
-      {/* =========================
-          Header + Navigation
-      ========================= */}
+      {/* ─── Header ─── */}
       <header>
         <h1>Beyza Nur Ozanalp</h1>
-
         <nav aria-label="Ana navigasyon">
           <ul>
-            <li>
-              <a href="#hakkimda">Hakkımda</a>
-            </li>
-            <li>
-              <a href="#projeler">Projelerim</a>
-            </li>
-            <li>
-              <a href="#iletisim">İletişim</a>
-            </li>
+            <li><a href="#hakkimda">Hakkımda</a></li>
+            <li><a href="#projeler">Projelerim</a></li>
+            <li><a href="#iletisim">İletişim</a></li>
           </ul>
         </nav>
       </header>
 
-      {/* =========================
-          Main Content
-      ========================= */}
+      {/* ─── Main ─── */}
       <main id="main-content">
+
         {/* Hakkımda */}
         <section id="hakkimda">
           <h2>Hakkımda</h2>
-
           <p>
             Yazılım Mühendisliği öğrencisiyim. Web ve mobil teknolojilere ilgi
             duyuyor, kullanıcı odaklı ve erişilebilir arayüzler geliştirmeyi
             hedefliyorum.
           </p>
-
           <h3>Kullandığım Teknolojiler</h3>
           <ul>
             <li>HTML5</li>
@@ -51,61 +78,140 @@ function App() {
           </ul>
         </section>
 
-        {/* Projeler */}
+        {/* ─── Projeler ─── */}
         <section id="projeler">
           <h2>Projelerim</h2>
 
-          <article>
-            <h3>Glowmance</h3>
+          {/* HATA DURUMU */}
+          {error && (
+            <div role="alert" className="error-alert">
+              <strong>Hata:</strong> {error}
+            </div>
+          )}
 
-            <p>
-              Yapay zeka destekli cilt analizi yaparak kullanıcıya uygun bakım
-              ürünleri öneren web uygulaması.
+          {/* FİLTRELER */}
+          <div className="filters">
+            {/* Arama */}
+            <input
+              id="search"
+              type="search"
+              placeholder="Proje ara... (başlık, açıklama, teknoloji)"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label="Proje arama"
+            />
+
+            {/* Kategori butonları */}
+            <div className="category-buttons" role="group" aria-label="Kategori filtresi">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  className={category === cat ? "btn-active" : "btn-ghost"}
+                  aria-pressed={category === cat}
+                >
+                  {cat === "all" ? "Tümü" : cat}
+                </button>
+              ))}
+            </div>
+
+            {/* Sıralama */}
+            <div className="sort-controls">
+              <label htmlFor="sort-field">Sırala:</label>
+              <select
+                id="sort-field"
+                value={sortField}
+                onChange={(e) => setSortField(e.target.value as SortField)}
+              >
+                <option value="year">Yıl</option>
+                <option value="title">Başlık</option>
+              </select>
+
+              <button
+                onClick={() => setSortOrder((o) => (o === "asc" ? "desc" : "asc"))}
+                className="btn-ghost"
+                aria-label={`Sıralama yönü: ${sortOrder === "asc" ? "Artan" : "Azalan"}`}
+              >
+                {sortOrder === "asc" ? "↑ Artan" : "↓ Azalan"}
+              </button>
+            </div>
+          </div>
+
+          {/* YÜKLENİYOR */}
+          {loading && (
+            <p className="status-msg" role="status">
+              Yükleniyor...
             </p>
+          )}
 
-            <p>
-              <strong>Teknolojiler:</strong> React, Vite, AI API
-            </p>
+          {/* SONUÇ YOK */}
+          {!loading && !error && filtered.length === 0 && (
+            <p className="status-msg">Eşleşen proje bulunamadı.</p>
+          )}
 
-            <figure>
-              <img
-                src="/proje1.1.jpg"
-                alt="Glowmance cilt analiz ekranı"
-                width={300}
-                loading="lazy"
-              />
-              <figcaption>Cilt Analiz Ekranı</figcaption>
-            </figure>
+          {/* PROJE LİSTESİ */}
+          {!loading && filtered.length > 0 && (
+            <>
+              <p className="result-count">
+                {filtered.length} / {projects.length} proje gösteriliyor
+              </p>
+              <div className="project-grid">
+                {filtered.map((project) => (
+                  <article key={project.id} className="project-card">
+                    <header className="card-header">
+                      <h3>{project.title}</h3>
+                      <span className="badge">{project.category}</span>
+                    </header>
 
-            <figure>
-              <img
-                src="/proje1.2.jpg"
-                alt="Glowmance ürün öneri ekranı"
-                width={300}
-                loading="lazy"
-              />
-              <figcaption>Ürün Öneri Ekranı</figcaption>
-            </figure>
-          </article>
+                    <p className="card-desc">{project.description}</p>
 
-          <article>
-            <h3>Kişisel Portföy Sitesi</h3>
+                    {/* Teknoloji etiketleri */}
+                    <ul className="tech-list" aria-label="Kullanılan teknolojiler">
+                      {project.tech.map((t) => (
+                        <li key={t} className="tech-tag">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
 
-            <p>
-              Kendimi ve projelerimi tanıttığım, erişilebilirlik kurallarına uygun
-              portföy web sitesi.
-            </p>
-
-            <p>
-              <strong>Teknolojiler:</strong> HTML, CSS, React
-            </p>
-          </article>
+                    <footer className="card-footer">
+                      <span className="card-year">{project.year}</span>
+                      {project.featured && (
+                        <span className="featured-badge">⭐ Öne Çıkan</span>
+                      )}
+                      <div className="card-links">
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="card-link"
+                          >
+                            Demo
+                          </a>
+                        )}
+                        {project.sourceUrl && (
+                          <a
+                            href={project.sourceUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="card-link"
+                          >
+                            Kaynak
+                          </a>
+                        )}
+                      </div>
+                    </footer>
+                  </article>
+                ))}
+              </div>
+            </>
+          )}
         </section>
 
         {/* İletişim */}
         <section id="iletisim">
           <h2>İletişim</h2>
-
           <form action="#" method="POST" noValidate>
             <fieldset>
               <legend>İletişim Formu</legend>
@@ -120,11 +226,7 @@ function App() {
                   minLength={2}
                   aria-describedby="name-error"
                 />
-                <small
-                  id="name-error"
-                  className="error-msg"
-                  role="alert"
-                ></small>
+                <small id="name-error" className="error-msg" role="alert"></small>
               </div>
 
               <div className="form-group">
@@ -136,11 +238,7 @@ function App() {
                   required
                   aria-describedby="email-error"
                 />
-                <small
-                  id="email-error"
-                  className="error-msg"
-                  role="alert"
-                ></small>
+                <small id="email-error" className="error-msg" role="alert"></small>
               </div>
 
               <div className="form-group">
@@ -156,11 +254,7 @@ function App() {
                   <option value="soru">Soru</option>
                   <option value="oneri">Öneri</option>
                 </select>
-                <small
-                  id="subject-error"
-                  className="error-msg"
-                  role="alert"
-                ></small>
+                <small id="subject-error" className="error-msg" role="alert"></small>
               </div>
 
               <div className="form-group">
@@ -173,11 +267,7 @@ function App() {
                   minLength={10}
                   aria-describedby="message-error"
                 ></textarea>
-                <small
-                  id="message-error"
-                  className="error-msg"
-                  role="alert"
-                ></small>
+                <small id="message-error" className="error-msg" role="alert"></small>
               </div>
 
               <button type="submit">Gönder</button>
@@ -186,34 +276,19 @@ function App() {
         </section>
       </main>
 
-      {/* =========================
-          Footer
-      ========================= */}
+      {/* ─── Footer ─── */}
       <footer>
         <p>© 2026 Beyza Nur Ozanalp</p>
-
         <p>
-          <a
-            href="https://github.com/Beyzanur-1419/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://github.com/Beyzanur-1419/" target="_blank" rel="noreferrer">
             GitHub
           </a>{" "}
           |{" "}
-          <a
-            href="http://www.linkedin.com/in/beyzanurozanalp"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="http://www.linkedin.com/in/beyzanurozanalp" target="_blank" rel="noreferrer">
             LinkedIn
           </a>{" "}
           |{" "}
-          <a
-            href="https://medium.com/@beyzanurozanalp/"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://medium.com/@beyzanurozanalp/" target="_blank" rel="noreferrer">
             Medium
           </a>
         </p>
@@ -221,5 +296,3 @@ function App() {
     </>
   );
 }
-
-export default App;
