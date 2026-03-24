@@ -1,0 +1,69 @@
+[
+  {
+    "id": 1,
+    "title": "E-Ticaret Platformu",
+    "description": "React ve Node.js ile tam kapsamlı e-ticaret uygulaması. Sepet, ödeme ve stok yönetimi içerir.",
+    "tech": ["React", "Node.js", "MongoDB"],
+    "year": 2024,
+    "category": "fullstack",
+    "featured": true,
+    "image": "/images/ecommerce.jpg",
+    "demoUrl": "https://demo.example.com/ecommerce",
+    "sourceUrl": "https://github.com/example/ecommerce"
+  },
+  {
+    "id": 2,
+    "title": "Blog Uygulaması",
+    "description": "Next.js ile SEO dostu kişisel blog platformu. Markdown desteği ve dark mode içerir.",
+    "tech": ["Next.js", "TypeScript", "Tailwind"],
+    "year": 2024,
+    "category": "frontend",
+    "featured": false,
+    "image": "/images/blog.jpg",
+    "demoUrl": "https://demo.example.com/blog"
+  },
+  {
+    "id": 3,
+    "title": "Hava Durumu API",
+    "description": "OpenWeather API ile anlık hava durumu sorgulama. Konum bazlı ve 5 günlük tahmin destekler.",
+    "tech": ["JavaScript", "REST API", "CSS"],
+    "year": 2023,
+    "category": "frontend",
+    "featured": true,
+    "image": "/images/weather.jpg",
+    "sourceUrl": "https://github.com/example/weather"
+  },
+  {
+    "id": 4,
+    "title": "Görev Yöneticisi",
+    "description": "Drag-and-drop destekli Kanban tarzı görev panosu. Takım çalışması için gerçek zamanlı güncelleme.",
+    "tech": ["React", "TypeScript", "DnD Kit"],
+    "year": 2024,
+    "category": "frontend",
+    "featured": false,
+    "image": "/images/taskboard.jpg",
+    "demoUrl": "https://demo.example.com/taskboard"
+  },
+  {
+    "id": 5,
+    "title": "Chat Uygulaması",
+    "description": "WebSocket ile gerçek zamanlı mesajlaşma. Oda sistemi ve dosya paylaşımı destekler.",
+    "tech": ["React", "Socket.io", "Express"],
+    "year": 2023,
+    "category": "fullstack",
+    "featured": true,
+    "image": "/images/chat.jpg",
+    "sourceUrl": "https://github.com/example/chat"
+  },
+  {
+    "id": 6,
+    "title": "Portfolyo Admin Paneli",
+    "description": "Kişisel portfolyo sitesini yönetmek için backend admin paneli. CRUD işlemleri ve istatistikler.",
+    "tech": ["Node.js", "Express", "PostgreSQL"],
+    "year": 2023,
+    "category": "backend",
+    "featured": false,
+    "image": "/images/admin.jpg",
+    "sourceUrl": "https://github.com/example/admin"
+  }
+]
